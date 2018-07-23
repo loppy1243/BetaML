@@ -5,9 +5,7 @@ using Base.Iterators: drop, take
 using IterTools: takenth, chain
 using Lazy: @>
 
-const EVENTS = 10^6
 const COLUMNS = 16*16 + 6
-const ROWS = EVENTS
 const GRIDSIZE = [16, 16]
 const CELLS = prod(GRIDSIZE)
 const MAX_E = 3060.0
@@ -16,10 +14,10 @@ const XYMIN = -[48.0, 48.0]/2 # = [-24, -24]
 const XYMAX = [48.0, 48.0]/2 # = [24, 24]
 const XYOFF = -[48.0, 48.0]/2 # = [-24, -24]
 
-read(file) = read(Float64, file)
-read(file, range) = read(Float64, file, range)
-function read(T::Type, file)
-    data = readdlm(file, T, dims=(ROWS, COLUMNS))
+read(file; kws...) = read(Float64, file; kws...)
+read(file, range; kws...) = read(Float64, file, range; kws...)
+function read(T::Type, file; lines=countlines(file))
+    data = readdlm(file, T, dims=(lines, COLUMNS))
 
     (reshape(data[:, 1:end-6], :, GRIDSIZE...), data[:, end-5:end])
 end
