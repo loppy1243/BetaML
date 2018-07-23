@@ -1,5 +1,5 @@
 module Data
-export EVENTS, COLUMNS, ROWS, GRIDSIZE, CELLS, MAX_E, XYMIN, XYMAX, XYOFF
+export COLUMNS, GRIDSIZE, CELLS, MAX_E, XYMIN, XYMAX, XYOFF
 
 using Base.Iterators: drop, take
 using IterTools: takenth, chain
