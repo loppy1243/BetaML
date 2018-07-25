@@ -59,4 +59,15 @@ function pointcell(p)
     pointcellfrac(p) .|> ceil .|> Int .|> fix
 end
 
+# On windows spy doesn't flip anything, so keep that in mind...
+function plotpoint!(plt, p; kws...)
+    xmin, xmax = xlims(plt)
+    ymin, ymax = ylims(plt)
+
+    xy = @. (p - XYOFF)/(XYMAX-XYMIN)*[xmax-xmin, ymax-ymin] + [xmin, ymin]
+
+    scatter!(plt, [xy[1]], [xy[2]], legend=false; kws...)
+end
+plotpoint!(p; kws...) = plotpoint!(Plots.current(), p; kws...)
+
 end # module Data
