@@ -1,0 +1,8 @@
+name = "BetaML"
+uuid = "f936c19c-c5c6-11e8-3bb1-3bd10ff9e00d"
+authors = ["Nicholas Todoroff <loppy1243@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+IterTools = "c8e1da08-722c-5040-9ed9-7db0dc04731e"
+Lazy = "50d2b5c4-7a5e-59d5-8109-a42b560f39c0"
