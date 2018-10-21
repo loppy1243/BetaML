@@ -36,7 +36,7 @@ function read(T::Type, file; lines=countlines(file))
     (reshape(data[:, 1:end-6], :, GRIDSIZE...), data[:, end-5:end])
 end
 function read(T::Type, file, range)
-    @assert start(range) > 0
+    @assert first(range) > 0
     buf = IOBuffer()
     open(file) do stream
         itr = @> stream begin
