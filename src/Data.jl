@@ -1,5 +1,5 @@
 module Data
-export COLUMNS, GRIDSIZE, CELLS, MAX_E, XYMIN, XYMAX, XYOFF
+export COLUMNS, GRID, MAX_E
 
 using Base.Iterators: drop, take
 using IterTools: takenth, chain
@@ -8,7 +8,7 @@ using RecipesBase
 
 const COLUMNS = 16*16 + 6
 #const GRIDSIZE = [16, 16]
-const CELLS = prod(GRIDSIZE)
+#const CELLS = prod(GRIDSIZE)
 const MAX_E = 3060.0
 
 #const XYMIN = -[48.0, 48.0]/2 # = [-24, -24]
