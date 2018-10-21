@@ -43,7 +43,7 @@ function read(T::Type, file, range)
         itr = @> stream begin
             eachline()
             drop(first(range)-1)
-            i -> chain([first(i)], takenth(drop(i, 1), step(range)))
+            i -> flatten(([first(i)], takenth(drop(i, 1), step(range))))
             take(length(range))
         end
 
