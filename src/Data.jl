@@ -51,7 +51,7 @@ function read(T::Type, file, range)
     end
 
     seekstart(buf)
-    data = readdlm(buf, T, dims=(length(range), COLUMNS))
+    data = readdlm(buf, T#=, dims=(length(range), COLUMNS)=#)
 
     (reshape(data[:, 1:end-6], :, GRIDSIZE...), data[:, end-5:end])
 end
