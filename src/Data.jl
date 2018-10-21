@@ -53,7 +53,7 @@ function read(T::Type, file, range)
     seekstart(buf)
     data = readdlm(buf, T#=, dims=(length(range), COLUMNS)=#)
 
-    (reshape(data[:, 1:end-6], :, GRID.size..), data[:, end-5:end])
+    (reshape(data[:, 1:end-6], :, GRID.size...), data[:, end-5:end])
 end
 
 export cellpoint, pointcellfrac, pointcell
