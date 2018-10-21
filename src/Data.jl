@@ -40,7 +40,7 @@ function read(T::Type, file, range)
     buf = IOBuffer()
     open(file) do stream
         itr = @> stream begin
-            eachline(chomp=false)
+            eachline()
             drop(first(range)-1)
             i -> chain([first(i)], takenth(drop(i, 1), step(range)))
             take(length(range))
