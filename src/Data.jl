@@ -34,7 +34,7 @@ read(file, range; kws...) = read(Float64, file, range; kws...)
 function read(T::Type, file; lines=countlines(file))
     data = readdlm(file, T, dims=(lines, COLUMNS))
 
-    (reshape(data[:, 1:end-6], :, GRIDSIZE...), data[:, end-5:end])
+    (reshape(data[:, 1:end-6], :, GRID.size...), data[:, end-5:end])
 end
 function read(T::Type, file, range)
     @assert first(range) > 0
@@ -53,7 +53,7 @@ function read(T::Type, file, range)
     seekstart(buf)
     data = readdlm(buf, T#=, dims=(length(range), COLUMNS)=#)
 
-    (reshape(data[:, 1:end-6], :, GRIDSIZE...), data[:, end-5:end])
+    (reshape(data[:, 1:end-6], :, GRID.size..), data[:, end-5:end])
 end
 
 export cellpoint, pointcellfrac, pointcell
@@ -61,12 +61,12 @@ function cellpoint(cell)
     xy = [cell[2], cell[1]]
 
     # =(xy - 1 + 1/2)
-    @. (xy - 1/2)/GRIDSIZE*(XYMAX-XYMIN) + XYOFF
+    @. (xy - 1/2)/GRID.size*(GRID.xymax-GRID.xymin) + XYOFF
 end
 function pointcellfrac(p)
     swap(v) = [v[2], v[1]]
 
-    (p - XYOFF)./(XYMAX-XYMIN).*GRIDSIZE |> swap
+    (p - GRID.xyoff)./(GRID.xymax-GRID.xymin).*GRID.size |> swap
 end
 function pointcell(p)
     fix(x) = iszero(x) ? oneunit(x) : x
