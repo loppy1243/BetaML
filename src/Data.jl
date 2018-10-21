@@ -2,8 +2,8 @@ module Data
 export COLUMNS, GRID, MAX_E
 
 using DelimitedFiles: readdlm
-using Base.Iterators: drop, take
-using IterTools: takenth, flatten
+using Base.Iterators: drop, take, flatten
+using IterTools: takenth
 using Lazy: @>
 using RecipesBase
 
