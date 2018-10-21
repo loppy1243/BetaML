@@ -1,6 +1,7 @@
 module Data
 export COLUMNS, GRID, MAX_E
 
+using DelimitedFiles: readdlm
 using Base.Iterators: drop, take
 using IterTools: takenth, chain
 using Lazy: @>

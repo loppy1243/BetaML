@@ -4,6 +4,7 @@ authors = ["Nicholas Todoroff <loppy1243@gmail.com>"]
 version = "0.1.0"
 
 [deps]
+DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 IterTools = "c8e1da08-722c-5040-9ed9-7db0dc04731e"
 Lazy = "50d2b5c4-7a5e-59d5-8109-a42b560f39c0"
 RecipesBase = "3cdcf5f2-1ef4-517c-9805-6587b60abb01"
