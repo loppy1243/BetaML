@@ -37,11 +37,11 @@ function read(T::Type, file; lines=countlines(file))
     (reshape(data[:, 1:end-6], :, GRID.size...), data[:, end-5:end])
 end
 function read(T::Type, file, range)
-    @assert first(range) > 0
+    @assert first(range) > 0 && step(range) >= 0
     buf = IOBuffer()
     open(file) do stream
         itr = @> stream begin
-            eachline()
+            eachline(keep=true)
             drop(first(range)-1)
             i -> flatten(([first(i)], takenth(drop(i, 1), step(range))))
             take(length(range))
@@ -51,8 +51,9 @@ function read(T::Type, file, range)
     end
 
     seekstart(buf)
-    data = readdlm(buf, T#=, dims=(length(range), COLUMNS)=#)
+    data = readdlm(buf, T, dims=(length(range), COLUMNS))
 
+    @show size(data)
     (reshape(data[:, 1:end-6], :, GRID.size...), data[:, end-5:end])
 end
 
